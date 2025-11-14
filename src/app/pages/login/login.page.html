@@ -1,0 +1,48 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <div class="header-section">
+      <img src="assets/icon/favicon.png" alt="Speed Logo" class="app-logo">
+      <h1>Speed</h1>
+      <p>Inicia sesión para continuar</p>
+    </div>
+
+    <form (ngSubmit)="login()">
+      <ion-list lines="none">
+        <ion-item class="input-item">
+          <ion-label position="stacked">Correo electrónico</ion-label>
+          <div class="custom-input-wrapper">
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-input [(ngModel)]="email" name="email" type="email" placeholder="tu correo"></ion-input>
+          </div>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="stacked">Contraseña</ion-label>
+          <div class="custom-input-wrapper">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <ion-input [(ngModel)]="password" name="password" type="password" placeholder="tu contraseña"></ion-input>
+            <ion-icon name="eye-outline" class="password-toggle"></ion-icon> </div>
+        </ion-item>
+      </ion-list>
+
+    
+
+      <ion-button expand="block" type="submit" class="login-button">Iniciar Sesión</ion-button>
+
+<ion-button fill="clear" color="medium" routerLink="/register">
+  Crear cuenta nueva
+</ion-button>
+    </form>
+
+    <div class="footer-links">
+      <p>Al iniciar sesión, aceptas nuestros <a routerLink="/terms">Términos de Servicio</a> y <a routerLink="/privacy">Política de Privacidad</a></p>
+    </div>
+
+    <ion-text color="danger" *ngIf="errorMessage" class="error-message">{{ errorMessage }}</ion-text>
+  </div>
+</ion-content>

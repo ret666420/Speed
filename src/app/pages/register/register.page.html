@@ -1,0 +1,58 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-container">
+
+    <div class="header-section">
+      <img src="assets/icon/favicon.png" alt="Speed Logo" class="app-logo">
+      <h1>Crear Cuenta</h1>
+      <p>Regístrate para continuar</p>
+    </div>
+
+    <form (ngSubmit)="register()">
+
+      <ion-list lines="none">
+
+        <ion-item class="input-item">
+          <ion-label position="stacked">Nombre</ion-label>
+          <div class="custom-input-wrapper">
+            <ion-icon name="person-outline"></ion-icon>
+            <ion-input [(ngModel)]="nombre" name="nombre" type="text" placeholder="tu nombre"></ion-input>
+          </div>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="stacked">Correo electrónico</ion-label>
+          <div class="custom-input-wrapper">
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-input [(ngModel)]="email" name="email" type="email" placeholder="tu correo"></ion-input>
+          </div>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="stacked">Contraseña</ion-label>
+          <div class="custom-input-wrapper">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <ion-input [(ngModel)]="password" name="password" type="password" placeholder="tu contraseña"></ion-input>
+          </div>
+        </ion-item>
+
+      </ion-list>
+
+      <ion-button expand="block" type="submit" class="login-button">
+        Registrar
+      </ion-button>
+
+      <ion-button fill="clear" color="medium" routerLink="/login">
+        Ya tengo cuenta
+      </ion-button>
+
+    </form>
+
+    <ion-text color="success" *ngIf="successMessage" class="error-message">{{ successMessage }}</ion-text>
+    <ion-text color="danger" *ngIf="errorMessage" class="error-message">{{ errorMessage }}</ion-text>
+
+  </div>
+</ion-content>

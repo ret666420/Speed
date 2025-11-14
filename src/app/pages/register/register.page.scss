@@ -1,0 +1,108 @@
+:host {
+  --ion-background-color: #000000;
+}
+
+ion-header {
+  ion-toolbar {
+    --background: #000000;
+    --border-color: transparent;
+    color: white;
+  }
+}
+
+ion-content {
+  color: white;
+  --padding-start: 16px;
+  --padding-end: 16px;
+
+  .login-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .header-section {
+      text-align: center;
+      margin-bottom: 18px;
+
+      .app-logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 2.2em;
+        font-weight: bold;
+        color: white;
+      }
+
+      p {
+        color: var(--ion-color-medium);
+        font-size: 1em;
+      }
+    }
+
+    ion-list {
+      background: transparent;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    ion-item.input-item {
+      --background: transparent;
+      --inner-padding-end: 0;
+      --inner-padding-start: 0;
+      --padding-start: 0;
+      --padding-end: 0;
+      margin-bottom: 16px;
+
+      ion-label {
+        color: var(--ion-color-medium);
+        font-size: 1.1em;
+        margin-bottom: 8px;
+      }
+
+      .custom-input-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background: #2d2d2d;
+        border-radius: 10px;
+        padding: 16px 18px;
+
+        ion-icon {
+          color: var(--ion-color-medium);
+          font-size: 1.6em;
+          margin-right: 12px;
+        }
+
+        ion-input {
+          flex: 1;
+          font-size: 1.15em;
+          color: white;
+
+          /* ✅ Quitar fondo blanco */
+          --background: transparent !important;
+          background: transparent !important;
+        }
+      }
+    }
+
+    .login-button {
+      --background: var(--ion-color-warning);
+      --color: #000;
+      height: 54px;
+      font-size: 1.15em;
+      font-weight: bold;
+      border-radius: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    .error-message {
+      text-align: center;
+      font-size: 0.95em;
+      margin-top: 10px;
+    }
+  }
+}
