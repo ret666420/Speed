@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio" color="light"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Recompensas</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="notifications-outline" color="light"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+
+  <!-- 🔔 NOTIFICACIONES RECIENTES -->
+  <div class="section-title">
+    <ion-icon name="trophy-outline"></ion-icon>
+    <span>Notificaciones Recientes</span>
+  </div>
+
+  <div class="card notify">
+    <div class="icon-box">
+      <ion-icon name="trophy"></ion-icon>
+    </div>
+
+    <div class="text-box">
+      <h3>Nuevo Desafío Disponible</h3>
+      <p>Completa 5 carreras en Ciudad Nocturna</p>
+      <small>Hace 1h</small>
+    </div>
+  </div>
+
+  <div class="card notify">
+    <div class="icon-box">
+      <ion-icon name="cube"></ion-icon>
+    </div>
+
+    <div class="text-box">
+      <h3>Recompensa Lista</h3>
+      <p>Has ganado 500 monedas por tu racha</p>
+      <small>Hace 3h</small>
+    </div>
+  </div>
+
+  <div class="card notify">
+    <div class="icon-box">
+      <ion-icon name="star"></ion-icon>
+    </div>
+
+    <div class="text-box">
+      <h3>Logro Desbloqueado</h3>
+      <p>Maestro del Drift – Nivel 3</p>
+      <small>Hace 1d</small>
+    </div>
+  </div>
+
+  <!-- 🎁 RECOMPENSAS DISPONIBLES -->
+  <div class="section-title">
+    <ion-icon name="gift-outline"></ion-icon>
+    <span>Recompensas Disponibles</span>
+  </div>
+
+  <!-- Tarjeta 1 -->
+  <div class="card reward">
+    <div class="reward-info">
+      <h3>Paquete de Monedas</h3>
+      <p>1,000</p>
+      <span class="tag comun">COMÚN</span>
+    </div>
+
+    <ion-button expand="block" class="yellow-btn">
+      Reclamar Ahora
+    </ion-button>
+  </div>
+
+  <!-- Tarjeta 2 -->
+  <div class="card reward">
+    <div class="reward-info">
+      <h3>Skin Legendaria</h3>
+      <p>Exclusiva</p>
+      <span class="tag legendaria">LEGENDARIA</span>
+    </div>
+
+    <ion-button expand="block" class="yellow-btn">
+      Reclamar Ahora
+    </ion-button>
+  </div>
+
+  <!-- Tarjeta 3 -->
+  <div class="card reward">
+    <div class="reward-info">
+      <h3>Boost de XP</h3>
+      <p>2x por 24h</p>
+      <span class="tag rara">RARA</span>
+    </div>
+
+    <ion-button expand="block" class="yellow-btn">
+      Reclamar Ahora
+    </ion-button>
+  </div>
+
+</ion-content>

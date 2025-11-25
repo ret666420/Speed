@@ -1,76 +1,118 @@
 ion-content {
   --background: #0f0f0f;
-  padding: 10px;
 }
 
-.car-card {
-  background: #1b1b1b;
-  border-radius: 18px;
-  padding: 15px;
-  margin-bottom: 20px;
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
   color: white;
-  border: 1px solid #2a2a2a;
 }
 
-.car-title {
-  font-size: 1.3rem;
+.avatar {
+  width: 60px;
+  height: 60px;
+  background: #f7c600;
+  color: #000;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+.username { margin: 0; }
+.level { margin: 0; opacity: 0.7; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 10px;
+  gap: 12px;
+}
+
+.stat-card {
+  background: #1a1a1a;
+  padding: 18px;
+  border-radius: 14px;
+  color: white;
+}
+
+.icon-box {
+  width: 38px;
+  height: 38px;
+  background: #f7c60022;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
-  font-weight: 600;
-}
-
-.car-image {
-  position: relative;
-
-  img {
-    width: 100%;
-    border-radius: 15px;
+  ion-icon {
+    font-size: 20px;
+    color: #f7c600;
   }
 }
 
-.class-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 6px 12px;
-  background: #ffd33d;
-  border-radius: 12px;
-  color: black;
-  font-weight: 600;
-  font-size: 0.9rem;
+.stat-card .value {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 5px;
 }
 
-.stats-row {
+.section-title {
+  margin: 20px 15px 10px;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.achievement-card {
+  background: #1a1a1a;
+  margin: 10px 15px;
+  padding: 15px;
+  border-radius: 14px;
+  color: white;
+}
+
+.row {
   display: flex;
   justify-content: space-between;
-  margin-top: 15px;
+  align-items: center;
 }
 
-.stat-box {
-  text-align: center;
-  width: 25%;
-
-  ion-icon {
-    font-size: 1.3rem;
-    color: #ffd33d;
-  }
-
-  p {
-    font-size: 0.7rem;
-    margin: 4px 0 0 0;
-    color: #bbbbbb;
-  }
-
-  span {
-    font-size: 1rem;
-    font-weight: bold;
-    color: white;
-  }
-}
-
-.details-btn {
-  --background: #ffd33d;
-  --color: black;
-  --border-radius: 12px;
-  margin-top: 18px;
+.percent {
+  color: #f7c600;
   font-weight: bold;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #333;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+.fill {
+  height: 100%;
+  background: #f7c600;
+  border-radius: 5px;
+}
+
+.bottom-buttons {
+  padding: 20px;
+}
+
+.yellow-btn {
+  --background: #f7c600;
+  --color: #000;
+  margin-bottom: 10px;
+}
+
+.outline-btn {
+  --border-color: #f7c600;
+  --color: #f7c600;
+  margin-top: 5px;
 }

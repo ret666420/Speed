@@ -1,0 +1,76 @@
+ion-content {
+  --background: #0f0f0f;
+  padding: 10px;
+}
+
+.car-card {
+  background: #1b1b1b;
+  border-radius: 18px;
+  padding: 15px;
+  margin-bottom: 20px;
+  color: white;
+  border: 1px solid #2a2a2a;
+}
+
+.car-title {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.car-image {
+  position: relative;
+
+  img {
+    width: 100%;
+    border-radius: 15px;
+  }
+}
+
+.class-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 6px 12px;
+  background: #ffd33d;
+  border-radius: 12px;
+  color: black;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.stat-box {
+  text-align: center;
+  width: 25%;
+
+  ion-icon {
+    font-size: 1.3rem;
+    color: #ffd33d;
+  }
+
+  p {
+    font-size: 0.7rem;
+    margin: 4px 0 0 0;
+    color: #bbbbbb;
+  }
+
+  span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+  }
+}
+
+.details-btn {
+  --background: #ffd33d;
+  --color: black;
+  --border-radius: 12px;
+  margin-top: 18px;
+  font-weight: bold;
+}

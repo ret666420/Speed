@@ -23,7 +23,8 @@ export class RegisterPage {
       return;
     }
 
-    this.authService.register(this.email, this.password, this.nombre).subscribe({
+this.authService.register(this.nombre, this.email, this.password)
+    .subscribe({
       next: (res) => {
         console.log('Registro exitoso:', res);
         this.successMessage = 'Usuario registrado correctamente';

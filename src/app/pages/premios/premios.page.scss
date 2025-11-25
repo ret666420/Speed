@@ -1,0 +1,106 @@
+ion-content {
+  --background: #0d0d0d;
+  color: #fff;
+}
+
+/* Títulos de secciones */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 15px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f7c208;
+}
+
+/* Tarjetas generales */
+.card {
+  background: #1a1a1a;
+  margin: 10px 15px;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  gap: 10px;
+  border: 1px solid #2a2a2a;
+}
+
+/* Notificaciones */
+.notify .icon-box {
+  background: #2a2a2a;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notify ion-icon {
+  font-size: 22px;
+  color: #f7c208;
+}
+
+.notify .text-box h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.notify .text-box p {
+  margin: 3px 0;
+  color: #ccc;
+  font-size: 13px;
+}
+
+.notify .text-box small {
+  color: #777;
+  font-size: 12px;
+}
+
+/* Recompensas */
+.reward {
+  flex-direction: column;
+}
+
+.reward-info h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.reward-info p {
+  margin: 4px 0;
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* Etiquetas de rareza */
+.tag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #000;
+}
+
+.comun {
+  background: #bfbfbf;
+}
+
+.legendaria {
+  background: #f7c208;
+}
+
+.rara {
+  background: #b569ff;
+}
+
+/* Botón amarillo */
+.yellow-btn {
+  --background: #f7c208;
+  --color: #000;
+  font-weight: 600;
+  margin-top: 10px;
+}

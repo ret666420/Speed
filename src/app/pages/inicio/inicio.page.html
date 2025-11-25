@@ -1,80 +1,95 @@
 <ion-header>
   <ion-toolbar color="dark">
-    <ion-title>Wiki de Carros</ion-title>
+    <ion-title>inicio</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="dark">
+<ion-content color="dark" fullscreen>
 
-
-  <!-- CARD 2 -->
-  <div class="car-card">
-    <div class="car-image">
-      <img src="https://i.imgur.com/w1Z8S9B.jpeg" />
-      <span class="class-badge">A-Class</span>
+  <div class="profile-header">
+    <div class="avatar">PR</div>
+    <div>
+      <h2 class="username">ProgresoRacer</h2>
+      <p class="level">Nivel 18 • Rango Intermedio</p>
     </div>
-
-    <h2 class="car-title">Storm Racer</h2>
-
-    <div class="stats-row">
-      <div class="stat-box">
-        <ion-icon name="flash-outline"></ion-icon>
-        <p>Velocidad</p>
-        <span>85</span>
-      </div>
-      <div class="stat-box">
-        <ion-icon name="speedometer-outline"></ion-icon>
-        <p>Aceleración</p>
-        <span>88</span>
-      </div>
-      <div class="stat-box">
-        <ion-icon name="swap-horizontal-outline"></ion-icon>
-        <p>Derrape</p>
-        <span>95</span>
-      </div>
-      <div class="stat-box">
-        <ion-icon name="shield-half-outline"></ion-icon>
-        <p>Durabilidad</p>
-        <span>80</span>
-      </div>
-    </div>
-
-    <ion-button expand="block" class="details-btn">Ver Detalles</ion-button>
   </div>
 
-  <!-- CARD 3 -->
-  <div class="car-card">
-    <div class="car-image">
-      <img src="https://i.imgur.com/XkP4juX.jpeg" />
-      <span class="class-badge">S-Class</span>
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <div class="icon-box">
+        <ion-icon name="speedometer"></ion-icon>
+      </div>
+      <h3>Distancia</h3>
+      <p class="value">142 km</p>
     </div>
 
-    <h2 class="car-title">Night Fury</h2>
-
-    <div class="stats-row">
-      <div class="stat-box">
-        <ion-icon name="flash-outline"></ion-icon>
-        <p>Velocidad</p>
-        <span>88</span>
+    <div class="stat-card">
+      <div class="icon-box">
+        <ion-icon name="timer-outline"></ion-icon>
       </div>
-      <div class="stat-box">
-        <ion-icon name="speedometer-outline"></ion-icon>
-        <p>Aceleración</p>
-        <span>92</span>
-      </div>
-      <div class="stat-box">
-        <ion-icon name="swap-horizontal-outline"></ion-icon>
-        <p>Derrape</p>
-        <span>93</span>
-      </div>
-      <div class="stat-box">
-        <ion-icon name="shield-half-outline"></ion-icon>
-        <p>Durabilidad</p>
-        <span>85</span>
-      </div>
+      <h3>Tiempo Jugado</h3>
+      <p class="value">6h 24m</p>
     </div>
 
-    <ion-button expand="block" class="details-btn">Ver Detalles</ion-button>
+    <div class="stat-card">
+      <div class="icon-box">
+        <ion-icon name="flame-outline"></ion-icon>
+      </div>
+      <h3>Mejor Racha</h3>
+      <p class="value">12</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="icon-box">
+        <ion-icon name="podium-outline"></ion-icon>
+      </div>
+      <h3>Carreras Ganadas</h3>
+      <p class="value">34</p>
+    </div>
+
+  </div>
+
+  <!-- 🏆 Progreso de Logros -->
+  <div class="section-title">Progreso de Logros</div>
+
+  <div class="achievement-card">
+    <div class="row">
+      <div>
+        <h4>Aceleración Pro</h4>
+        <p>Alcanza 200 km/h</p>
+      </div>
+      <span class="percent">80%</span>
+    </div>
+    <div class="progress-bar"><div class="fill" style="width: 80%;"></div></div>
+  </div>
+
+  <div class="achievement-card">
+    <div class="row">
+      <div>
+        <h4>Explorador</h4>
+        <p>Completa 10 mapas</p>
+      </div>
+      <span class="percent">50%</span>
+    </div>
+    <div class="progress-bar"><div class="fill" style="width: 50%;"></div></div>
+  </div>
+
+  <div class="achievement-card">
+    <div class="row">
+      <div>
+        <h4>Maestro de Saltos</h4>
+        <p>Realiza 100 saltos</p>
+      </div>
+      <span class="percent">30%</span>
+    </div>
+    <div class="progress-bar"><div class="fill" style="width: 30%;"></div></div>
+  </div>
+
+  <!-- Botones -->
+  <div class="bottom-buttons">
+    <ion-button expand="block" class="yellow-btn">Jugar Ahora</ion-button>
+    <ion-button expand="block" fill="outline" class="outline-btn">Ver Detallado</ion-button>
   </div>
 
 </ion-content>

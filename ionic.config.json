@@ -1,7 +1,8 @@
 {
   "name": "Speed",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

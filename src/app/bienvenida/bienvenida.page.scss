@@ -1,0 +1,82 @@
+.welcome-page {
+  --background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+
+  .header-section {
+    margin-top: 60px;
+    text-align: center;
+
+    .logo-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 25px;
+
+      .logo-icon {
+        width: 90px;
+        height: 90px;
+        background: #1b1b1b;
+        border-radius: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 16px rgba(255, 204, 0, 0.18);
+
+        ion-icon {
+          font-size: 48px;
+          color: #ffcc00;
+        }
+      }
+    }
+
+    .title {
+      color: #fff;
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #d1d1d1;
+      font-size: 16px;
+      margin-bottom: 18px;
+    }
+
+    .description {
+      color: #8e8e8e;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0 30px;
+    }
+  }
+
+  .footer-section {
+    margin-bottom: 50px;
+
+    ion-button {
+      height: 54px;
+      font-size: 17px;
+      font-weight: 600;
+      border-radius: 14px;
+      margin-top: 18px;
+
+      ion-icon {
+        font-size: 20px;
+      }
+    }
+
+    .btn-login {
+      --background: #ffcc00;
+      --color: #000;
+      box-shadow: 0 4px 14px rgba(255, 204, 0, 0.35);
+    }
+
+    .btn-register {
+      --background: #1a1a1a;
+      --color: #fff;
+      border: 1px solid #2a2a2a;
+    }
+  }
+}
