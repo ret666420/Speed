@@ -1,0 +1,61 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>{{ car.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" color="light">
+        <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="modal-content ion-padding">
+
+    <div class="hero-image">
+      <img [src]="car.image" [alt]="car.name">
+    </div>
+
+    <div class="info-section">
+      <h3>Especificaciones Técnicas</h3>
+      <p class="description">
+        {{ car.description }}
+      </p>
+
+      <div class="bars-container">
+
+        <div class="stat-bar-row">
+          <div class="label">
+            <span class="stat-name"><ion-icon name="flash-outline"></ion-icon> Motor</span>
+            <span class="val">{{ car.base_motor }} / 3.0</span>
+          </div>
+          <ion-progress-bar [value]="car.base_motor / 3" color="warning"></ion-progress-bar>
+        </div>
+
+        <div class="stat-bar-row">
+          <div class="label">
+            <span class="stat-name"><ion-icon name="speedometer-outline"></ion-icon> Aceleración</span>
+            <span class="val">{{ car.base_aceleracion }} / 3.0</span>
+          </div>
+          <ion-progress-bar [value]="car.base_aceleracion / 3" color="success"></ion-progress-bar>
+        </div>
+
+        <div class="stat-bar-row">
+          <div class="label">
+            <span class="stat-name"><ion-icon name="shield-half-outline"></ion-icon> Durabilidad</span>
+            <span class="val">{{ car.base_durabilidad }} / 3.0</span>
+          </div>
+          <ion-progress-bar [value]="car.base_durabilidad / 3" color="tertiary"></ion-progress-bar>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="action-footer ion-margin-top">
+      <ion-button expand="block" class="action-btn" (click)="dismiss()">
+        Entendido
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

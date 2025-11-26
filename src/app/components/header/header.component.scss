@@ -1,0 +1,19 @@
+ion-toolbar {
+    --background: #0f0f0f;
+    --border-color: transparent;
+
+    --min-height: 60px;
+
+    ion-title {
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: 0.5px;
+        color: white;
+        padding-inline: 0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+}

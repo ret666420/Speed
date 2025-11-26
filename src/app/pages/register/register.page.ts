@@ -1,44 +1,69 @@
-import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastService } from './../../services/toast.service';
+import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
-  standalone: false,
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
+  standalone: false
 })
 export class RegisterPage {
-  nombre = '';
+  username = '';
   email = '';
   password = '';
-  errorMessage = '';
-  successMessage = '';
+  confirmPassword = '';
 
-  constructor(private authService: AuthService, private navCtrl: NavController) {}
+  errorMessage = '';
+  isLoading = false;
+  showPassword = false;
+  showConfirmPassword = false;
+
+  constructor(
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private toast: ToastService
+  ) { }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPassword() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
 
   register() {
-    if (!this.email || !this.password || !this.nombre) {
-      this.errorMessage = 'Por favor llena todos los campos';
+    if (!this.username || !this.email || !this.password || !this.confirmPassword) {
+      this.toast.warning('Por favor completa todos los campos');
       return;
     }
 
-this.authService.register(this.nombre, this.email, this.password)
-    .subscribe({
-      next: (res) => {
-        console.log('Registro exitoso:', res);
-        this.successMessage = 'Usuario registrado correctamente';
-        this.errorMessage = '';
+    if (this.password !== this.confirmPassword) {
+      this.toast.warning('Las contraseñas no coinciden');
+      return;
+    }
 
-        // Redirigir al login después de 2 segundos
-        setTimeout(() => {
-          this.navCtrl.navigateBack('/login');
-        }, 2000);
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.authService.register(this.username, this.email, this.password).subscribe({
+      next: (res) => {
+        this.isLoading = false;
+        console.log('Registro exitoso:', res);
+
+        this.toast.success('Registro exitoso, ahora inicia sesión');
+
+        this.navCtrl.navigateBack('/login');
       },
       error: (err) => {
+        this.isLoading = false;
         console.error('Error en registro:', err);
-        this.errorMessage = 'No se pudo registrar el usuario';
-        this.successMessage = '';
+
+        const msg = err.error?.error || 'Ocurrió un error al crear la cuenta';
+        this.errorMessage = msg;
+        this.toast.error(msg);
       }
     });
   }

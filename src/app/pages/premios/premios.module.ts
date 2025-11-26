@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PremiosPageRoutingModule } from './premios-routing.module';
-
+import { ComponentsModule } from '../../components/components.module';
 import { PremiosPage } from './premios.page';
 
 @NgModule({
@@ -13,8 +13,9 @@ import { PremiosPage } from './premios.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PremiosPageRoutingModule
+    PremiosPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [PremiosPage]
 })
-export class PremiosPageModule {}
+export class PremiosPageModule { }

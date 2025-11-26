@@ -1,106 +1,68 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/inicio" color="light"></ion-back-button>
-    </ion-buttons>
+<app-header title="Premios"></app-header>
 
-    <ion-title>Recompensas</ion-title>
+<ion-content [fullscreen]="true" style="--background: #0f0f0f;">
 
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="notifications-outline" color="light"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+  <div class="premios-container">
 
-<ion-content color="dark">
-
-  <!-- 🔔 NOTIFICACIONES RECIENTES -->
-  <div class="section-title">
-    <ion-icon name="trophy-outline"></ion-icon>
-    <span>Notificaciones Recientes</span>
-  </div>
-
-  <div class="card notify">
-    <div class="icon-box">
-      <ion-icon name="trophy"></ion-icon>
+    <div *ngIf="isLoading" class="ion-padding ion-text-center">
+      <ion-spinner color="warning"></ion-spinner>
+      <p style="color: #666;">Buscando recompensas...</p>
     </div>
 
-    <div class="text-box">
-      <h3>Nuevo Desafío Disponible</h3>
-      <p>Completa 5 carreras en Ciudad Nocturna</p>
-      <small>Hace 1h</small>
+    <div *ngIf="!isLoading" class="animate-fadeIn">
+
+      <div class="section-header">
+        <div class="icon-wrapper">
+          <ion-icon name="notifications-outline"></ion-icon>
+        </div>
+        <span class="section-title">Actividad Reciente</span>
+      </div>
+
+      <div *ngIf="recentActivity.length === 0" class="empty-state">
+        <p>No hay actividad reciente.</p>
+      </div>
+
+      <div class="card notify" *ngFor="let activity of recentActivity">
+        <div class="icon-box">
+          <ion-icon name="trophy" style="color: #f7c208;"></ion-icon>
+        </div>
+        <div class="text-box">
+          <h3>¡Logro Desbloqueado!</h3>
+          <p>{{ activity.name }}</p>
+          <small>{{ getTimeAgo(activity.unlocked_at) }}</small>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <div class="icon-wrapper">
+          <ion-icon name="gift-outline"></ion-icon>
+        </div>
+        <span class="section-title">Recompensas por Reclamar</span>
+      </div>
+
+      <div *ngIf="pendingRewards.length === 0" class="empty-state ion-text-center">
+        <ion-icon name="checkmark-done-circle-outline"
+          style="font-size: 40px; color: #444; margin-bottom: 10px;"></ion-icon>
+        <p>¡Estás al día! Completa más logros para ganar premios.</p>
+      </div>
+      <div class="card reward" *ngFor="let reward of pendingRewards">
+        <div class="reward-info">
+          <div>
+            <h3>{{ reward.name }}</h3>
+            <p style="color: #aaa; font-size: 0.85rem;">{{ reward.description }}</p>
+          </div>
+
+          <div class="reward-badge">
+            +{{ reward.reward_monedas }} <ion-icon name="cash-outline"></ion-icon>
+          </div>
+        </div>
+
+        <ion-button expand="block" class="yellow-btn" (click)="claim(reward)">
+          Reclamar Ahora
+        </ion-button>
+      </div>
+
     </div>
-  </div>
-
-  <div class="card notify">
-    <div class="icon-box">
-      <ion-icon name="cube"></ion-icon>
-    </div>
-
-    <div class="text-box">
-      <h3>Recompensa Lista</h3>
-      <p>Has ganado 500 monedas por tu racha</p>
-      <small>Hace 3h</small>
-    </div>
-  </div>
-
-  <div class="card notify">
-    <div class="icon-box">
-      <ion-icon name="star"></ion-icon>
-    </div>
-
-    <div class="text-box">
-      <h3>Logro Desbloqueado</h3>
-      <p>Maestro del Drift – Nivel 3</p>
-      <small>Hace 1d</small>
-    </div>
-  </div>
-
-  <!-- 🎁 RECOMPENSAS DISPONIBLES -->
-  <div class="section-title">
-    <ion-icon name="gift-outline"></ion-icon>
-    <span>Recompensas Disponibles</span>
-  </div>
-
-  <!-- Tarjeta 1 -->
-  <div class="card reward">
-    <div class="reward-info">
-      <h3>Paquete de Monedas</h3>
-      <p>1,000</p>
-      <span class="tag comun">COMÚN</span>
-    </div>
-
-    <ion-button expand="block" class="yellow-btn">
-      Reclamar Ahora
-    </ion-button>
-  </div>
-
-  <!-- Tarjeta 2 -->
-  <div class="card reward">
-    <div class="reward-info">
-      <h3>Skin Legendaria</h3>
-      <p>Exclusiva</p>
-      <span class="tag legendaria">LEGENDARIA</span>
-    </div>
-
-    <ion-button expand="block" class="yellow-btn">
-      Reclamar Ahora
-    </ion-button>
-  </div>
-
-  <!-- Tarjeta 3 -->
-  <div class="card reward">
-    <div class="reward-info">
-      <h3>Boost de XP</h3>
-      <p>2x por 24h</p>
-      <span class="tag rara">RARA</span>
-    </div>
-
-    <ion-button expand="block" class="yellow-btn">
-      Reclamar Ahora
-    </ion-button>
   </div>
 
 </ion-content>

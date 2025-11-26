@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ProgresoPageRoutingModule } from './progreso-routing.module';
-
+import { ComponentsModule } from '../../components/components.module';
 import { ProgresoPage } from './progreso.page';
 
 @NgModule({
@@ -13,8 +13,9 @@ import { ProgresoPage } from './progreso.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ProgresoPageRoutingModule
+    ProgresoPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [ProgresoPage]
 })
-export class ProgresoPageModule {}
+export class ProgresoPageModule { }

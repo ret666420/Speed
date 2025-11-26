@@ -1,0 +1,113 @@
+ion-toolbar {
+    --background: #1a1a1a;
+    --color: white;
+
+    ion-title {
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+}
+
+ion-content {
+    --background: #1a1a1a;
+    --color: white;
+}
+
+.hero-image {
+    background: radial-gradient(circle at center, #333 0%, #0f0f0f 100%);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333;
+
+    img {
+        height: 160px;
+        width: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
+        transition: transform 0.3s ease;
+
+        &:active {
+            transform: scale(1.05);
+        }
+    }
+}
+
+.info-section {
+    h3 {
+        margin-top: 0;
+        color: white;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .description {
+        color: #aaa;
+        line-height: 1.5;
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+
+        strong {
+            color: white;
+        }
+
+        .price {
+            color: var(--ion-color-warning);
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+    }
+}
+
+.bars-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    .stat-bar-row {
+        .label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            color: #ccc;
+
+            .stat-name {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-weight: 600;
+
+                ion-icon {
+                    color: #888;
+                    font-size: 1.1rem;
+                }
+            }
+
+            .val {
+                font-weight: bold;
+                color: white;
+                font-family: monospace;
+            }
+        }
+
+        ion-progress-bar {
+            height: 10px;
+            border-radius: 5px;
+            --background: #333;
+        }
+    }
+}
+
+.action-btn {
+    --background: #333;
+    --background-activated: #444;
+    --color: white;
+    --border-radius: 12px;
+    font-weight: 600;
+    height: 50px;
+}

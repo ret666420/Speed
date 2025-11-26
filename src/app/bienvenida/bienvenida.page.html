@@ -1,31 +1,38 @@
 <ion-content class="welcome-page">
 
-  <div class="header-section">
+  <div class="content-wrapper">
 
-    <div class="logo-wrapper">
-      <div class="logo-icon">
-        <ion-icon name="flash-outline"></ion-icon>
+    <div class="header-section">
+
+      <div class="logo-wrapper animate-float">
+        <div class="logo-icon">
+          <img src="assets/icon/logoBien.webp" alt="Speed Logo" class="app-logo">
+        </div>
       </div>
-    </div>
-<br>
-    <h1 class="title">Speed</h1>
-<br>
-    <p class="description">
-      Lleva tu progreso siempre contigo. Consulta estadísticas, sincroniza tus logros y recibe alertas personalizadas.
-    </p>
-<br>
-  </div>
 
-  <div class="footer-section">
-    <ion-button expand="block" class="btn-login" routerLink="/login">
-      <ion-icon name="log-in-outline"></ion-icon>
-      &nbsp; Iniciar Sesión
-    </ion-button>
-<br>
-    <ion-button expand="block" class="btn-register" routerLink="/register">
-      <ion-icon name="person-add-outline"></ion-icon>
-      &nbsp; Crear Cuenta
-    </ion-button>
+      <h1 class="title">Speed</h1>
+      <p class="subtitle">Domina la pista, conquista el ranking</p>
+
+      <p class="description">
+        Lleva tu progreso siempre contigo. Consulta estadísticas, sincroniza tus logros y recibe alertas personalizadas
+        en tiempo real.
+      </p>
+    </div>
+
+    <div class="footer-section">
+      <ion-button expand="block" class="btn-login" routerLink="/login">
+        <ion-icon slot="start" name="log-in-outline"></ion-icon>
+        Iniciar Sesión
+      </ion-button>
+
+      <ion-button expand="block" class="btn-register" routerLink="/register">
+        <ion-icon slot="start" name="person-add-outline"></ion-icon>
+        Crear Cuenta
+      </ion-button>
+
+      <p class="version-text">v1.0.0 • Speed Team</p>
+    </div>
+
   </div>
 
 </ion-content>

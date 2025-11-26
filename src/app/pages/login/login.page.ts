@@ -1,32 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service'; //es desde donde se hace el login(el metodo)
-import { NavController } from '@ionic/angular';//para navegar entre paginas
+import { AuthService } from 'src/app/services/auth.service';
+import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { ToastService } from 'src/app/services/toast.service';
+
 @Component({
-  standalone: false,
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  standalone: false
 })
 export class LoginPage {
-//lo que se va a usar en el html
-  email = '';
+  username = '';
   password = '';
   errorMessage = '';
-//pues el nNavCtrl para navegar entre paginas y el authService para hacer el login
-//el AuthService para llamar al login
-  constructor(private authService: AuthService, private navCtrl: NavController) {}
+  isLoading = false;
+  showPassword = false;
+
+  constructor(
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private toast: ToastService
+  ) { }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   login() {
-    
-    this.authService.login(this.email, this.password).subscribe({
-     
+    if (!this.username || !this.password) {
+      this.toast.warning('Por favor completa todos los campos');
+      return;
+    }
+
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.authService.login(this.username, this.password).subscribe({
       next: (res) => {
+        this.isLoading = false;
         console.log('Login exitoso:', res);
-        this.navCtrl.navigateForward('/tabs/inicio'); 
+
+        this.toast.success('Inicio de sesión exitoso');
+
+        this.navCtrl.navigateForward('/tabs/inicio');
       },
       error: (err) => {
+        this.isLoading = false;
         console.error('Error en login:', err);
-        this.errorMessage = 'Credenciales incorrectas';
+
+        const msg = err.error?.error || 'Credenciales incorrectas o error de conexión';
+        this.errorMessage = msg;
+        this.toast.error(msg);
       }
     });
   }

@@ -1,95 +1,83 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>inicio</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Mi perfil"></app-header>
 
-<ion-content color="dark" fullscreen>
+<ion-content [fullscreen]="true" style="--background: #0f0f0f;">
 
-  <div class="profile-header">
-    <div class="avatar">PR</div>
-    <div>
-      <h2 class="username">ProgresoRacer</h2>
-      <p class="level">Nivel 18 • Rango Intermedio</p>
-    </div>
+  <div *ngIf="isLoading" class="ion-padding ion-text-center">
+    <ion-spinner color="warning"></ion-spinner>
+    <p style="color: #666;">Sincronizando perfil...</p>
   </div>
 
-  <div class="stats-grid">
+  <div *ngIf="!isLoading && profileData">
 
-    <div class="stat-card">
-      <div class="icon-box">
-        <ion-icon name="speedometer"></ion-icon>
+    <div class="profile-header">
+      <div class="avatar">
+        {{ getInitials(profileData.user.display_name) }}
       </div>
-      <h3>Distancia</h3>
-      <p class="value">142 km</p>
-    </div>
-
-    <div class="stat-card">
-      <div class="icon-box">
-        <ion-icon name="timer-outline"></ion-icon>
-      </div>
-      <h3>Tiempo Jugado</h3>
-      <p class="value">6h 24m</p>
-    </div>
-
-    <div class="stat-card">
-      <div class="icon-box">
-        <ion-icon name="flame-outline"></ion-icon>
-      </div>
-      <h3>Mejor Racha</h3>
-      <p class="value">12</p>
-    </div>
-
-    <div class="stat-card">
-      <div class="icon-box">
-        <ion-icon name="podium-outline"></ion-icon>
-      </div>
-      <h3>Carreras Ganadas</h3>
-      <p class="value">34</p>
-    </div>
-
-  </div>
-
-  <!-- 🏆 Progreso de Logros -->
-  <div class="section-title">Progreso de Logros</div>
-
-  <div class="achievement-card">
-    <div class="row">
       <div>
-        <h4>Aceleración Pro</h4>
-        <p>Alcanza 200 km/h</p>
+        <h2 class="username">{{ profileData.user.display_name }}</h2>
+        <p class="level">Nivel {{ userLevel }} • {{ profileData.user.username }}</p>
       </div>
-      <span class="percent">80%</span>
     </div>
-    <div class="progress-bar"><div class="fill" style="width: 80%;"></div></div>
-  </div>
 
-  <div class="achievement-card">
-    <div class="row">
-      <div>
-        <h4>Explorador</h4>
-        <p>Completa 10 mapas</p>
+    <div class="stats-grid">
+      <!-- Monedas -->
+      <div class="stat-card">
+        <div class="icon-box">
+          <ion-icon name="cash-outline"></ion-icon>
+        </div>
+        <h3>Monedas</h3>
+        <p class="value">{{ profileData.user.monedas | number }}</p>
       </div>
-      <span class="percent">50%</span>
-    </div>
-    <div class="progress-bar"><div class="fill" style="width: 50%;"></div></div>
-  </div>
 
-  <div class="achievement-card">
-    <div class="row">
-      <div>
-        <h4>Maestro de Saltos</h4>
-        <p>Realiza 100 saltos</p>
+      <div class="stat-card">
+        <div class="icon-box">
+          <ion-icon name="flag-outline"></ion-icon>
+        </div>
+        <h3>Carreras</h3>
+        <p class="value">{{ profileData.user.races_played }}</p>
       </div>
-      <span class="percent">30%</span>
-    </div>
-    <div class="progress-bar"><div class="fill" style="width: 30%;"></div></div>
-  </div>
 
-  <!-- Botones -->
-  <div class="bottom-buttons">
-    <ion-button expand="block" class="yellow-btn">Jugar Ahora</ion-button>
-    <ion-button expand="block" fill="outline" class="outline-btn">Ver Detallado</ion-button>
+      <div class="stat-card">
+        <div class="icon-box">
+          <ion-icon name="car-sport-outline"></ion-icon>
+        </div>
+        <h3>Coches</h3>
+        <p class="value">{{ profileData.user.total_cars }}</p>
+      </div>
+
+      <div class="stat-card">
+        <div class="icon-box">
+          <ion-icon name="map-outline"></ion-icon>
+        </div>
+        <h3>Mapas</h3>
+        <p class="value">{{ profileData.user.maps_completed }}</p>
+      </div>
+    </div>
+
+    <div class="section-title">Mis Logros</div>
+
+    <div class="achievement-card" *ngFor="let trophy of profileData.trophies"
+      [style.opacity]="trophy.achieved ? '1' : '0.5'">
+      <div class="row">
+        <div>
+          <h4 style="display: flex; align-items: center; gap: 8px;">
+            <ion-icon [name]="trophy.achieved ? 'trophy' : 'lock-closed'"
+              [color]="trophy.achieved ? 'warning' : 'medium'"></ion-icon>
+            {{ trophy.name }}
+          </h4>
+          <p>{{ trophy.description }}</p>
+        </div>
+
+        <span class="percent" [style.color]="trophy.achieved ? 'var(--ion-color-warning)' : '#666'">
+          {{ trophy.achieved ? 'DESBLOQUEADO' : 'BLOQUEADO' }}
+        </span>
+      </div>
+
+      <div class="progress-bar">
+        <div class="fill" [style.width]="trophy.achieved ? '100%' : '0%'"></div>
+      </div>
+    </div>
+
   </div>
 
 </ion-content>

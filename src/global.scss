@@ -35,3 +35,36 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+ion-toast.custom-toast {
+    --background: #1f1f1f;
+    --color: white;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --start-icon-color: inherit;
+
+    font-weight: 500;
+
+    margin-top: 20px;
+
+    &.ion-color-success {
+        --start-icon-color: #2fdf75;
+        --border-color: #2fdf75;
+        --border-width: 0 0 0 4px;
+        --border-style: solid;
+    }
+
+    &.ion-color-danger {
+        --start-icon-color: #ff4961;
+        --border-color: #ff4961;
+        --border-width: 0 0 0 4px;
+        --border-style: solid;
+    }
+
+    &.ion-color-warning {
+        --start-icon-color: #ffd534;
+        --border-color: #ffd534;
+        --border-width: 0 0 0 4px;
+        --border-style: solid;
+    }
+}

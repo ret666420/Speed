@@ -1,83 +1,57 @@
-<ion-header>
-  <ion-toolbar color="dark">
-    <ion-title>Wiki de Carros</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Wiki de Carros"></app-header>
 
-<ion-content color="dark">
+<ion-content [fullscreen]="true" style="--background: #0f0f0f;">
 
+  <div class="wiki-container">
 
-  <div class="car-card">
-    <div class="car-image">
-      <img src="https://cdn.buttercms.com/7T0UjSkYQPeLMFGVGnI2" />
-      <span class="class-badge">A-Class</span>
+    <div *ngIf="isLoading" class="ion-padding ion-text-center">
+      <ion-spinner color="warning"></ion-spinner>
+      <p style="color: #666;">Cargando garaje...</p>
     </div>
 
-    <h2 class="car-title">Storm Racer</h2>
+    <div *ngIf="!isLoading" class="cars-grid">
 
-    <div class="stats-row">
-      <div class="stat-box">
-        <ion-icon name="flash-outline"></ion-icon>
-        <p>Velocidad</p>
-        <span>85</span>
+      <div class="car-card" *ngFor="let car of cars">
+
+        <div class="car-image">
+          <img [src]="car.image" [alt]="car.name" />
+
+          <span class="class-badge" [class.s-class]="car.class === 'S-Class'" [class.a-class]="car.class === 'A-Class'">
+            {{ car.class }}
+          </span>
+        </div>
+
+        <h2 class="car-title">{{ car.name }}</h2>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <ion-icon name="flash-outline"></ion-icon>
+            <p>Motor</p>
+            <span>{{ car.base_motor }}</span>
+          </div>
+          <div class="stat-box">
+            <ion-icon name="speedometer-outline"></ion-icon>
+            <p>Aceleración</p>
+            <span>{{ car.base_aceleracion }}</span>
+          </div>
+          <div class="stat-box">
+            <ion-icon name="shield-half-outline"></ion-icon>
+            <p>Durabilidad</p>
+            <span>{{ car.base_durabilidad }}</span>
+          </div>
+          <div class="stat-box">
+            <ion-icon name="cash-outline"></ion-icon>
+            <p>Costo</p>
+            <span>{{ car.cost_to_unlock | number }}</span>
+          </div>
+        </div>
+
+        <ion-button expand="block" class="details-btn" (click)="openDetails(car)">
+          Ver Detalles
+        </ion-button>
       </div>
-      <div class="stat-box">
-        <ion-icon name="speedometer-outline"></ion-icon>
-        <p>Aceleración</p>
-        <span>88</span>
-      </div>
-      <div class="stat-box">
-        <ion-icon name="swap-horizontal-outline"></ion-icon>
-        <p>Derrape</p>
-        <span>95</span>
-      </div>
-      <div class="stat-box">
-        <ion-icon name="shield-half-outline"></ion-icon>
-        <p>Durabilidad</p>
-        <span>80</span>
-      </div>
+
     </div>
-
-    <ion-button expand="block" class="details-btn">Ver Detalles</ion-button>
-  </div>
-
-  <div class="car-card">
-    <div class="car-image">
-      <img src="https://media.gq.com.mx/photos/5d6ec5c43d0c810008e7008c/16:9/w_1920,c_limit/bugatti.jpg" />
-      <span class="class-badge">S-Class</span>
-    </div>
-
-    <h2 class="car-title">Night Fury</h2>
-
-    <div class="stats-row">
-      <div class="stat-box">
-        <ion-icon name="flash-outline"></ion-icon>
-        <p>Velocidad</p>
-        <span>88</span>
-      </div>
-      <div class="stat-box">
-        <ion-icon name="speedometer-outline"></ion-icon>
-        <p>Aceleración</p>
-        <span>92</span>
-      </div>
-      <div class="stat-box">
-        <ion-icon name="swap-horizontal-outline"></ion-icon>
-        <p>Derrape</p>
-        <span>93</span>
-      </div>
-      <div class="stat-box">
-        <ion-icon name="shield-half-outline"></ion-icon>
-        <p>Durabilidad</p>
-        <span>85</span>
-      </div>
-    </div>
-
-
-
-
-    
-    <ion-button expand="block" class="details-btn">Ver Detalles</ion-button>
   </div>
 
 </ion-content>
-

@@ -1,106 +1,131 @@
 ion-content {
-  --background: #0d0d0d;
-  color: #fff;
+  --background: #0f0f0f;
 }
 
-/* Títulos de secciones */
-.section-title {
+.premios-container {
+  padding: 10px 16px 40px;
+}
+
+.section-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 20px 15px 10px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #f7c208;
+  gap: 10px;
+  margin: 24px 0 12px;
+
+  .icon-wrapper {
+    background: rgba(247, 198, 0, 0.1);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ion-icon {
+      color: var(--ion-color-warning);
+      font-size: 1.2rem;
+    }
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.3px;
+  }
 }
 
-/* Tarjetas generales */
 .card {
   background: #1a1a1a;
-  margin: 10px 15px;
-  padding: 15px;
-  border-radius: 15px;
-  display: flex;
-  gap: 10px;
-  border: 1px solid #2a2a2a;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #333;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Notificaciones */
-.notify .icon-box {
-  background: #2a2a2a;
-  width: 45px;
-  height: 45px;
-  border-radius: 10px;
+.notify {
   display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 15px;
+
+  .icon-box {
+    width: 45px;
+    height: 45px;
+    background: #252525;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+
+  .text-box {
+    flex: 1;
+
+    h3 {
+      margin: 0 0 4px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    p {
+      margin: 0 0 4px;
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+
+    small {
+      color: #666;
+      font-size: 0.75rem;
+    }
+  }
 }
 
-.notify ion-icon {
-  font-size: 22px;
-  color: #f7c208;
-}
-
-.notify .text-box h3 {
-  margin: 0;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.notify .text-box p {
-  margin: 3px 0;
-  color: #ccc;
-  font-size: 13px;
-}
-
-.notify .text-box small {
-  color: #777;
-  font-size: 12px;
-}
-
-/* Recompensas */
 .reward {
-  flex-direction: column;
+  .reward-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+
+    h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ion-color-warning);
+    }
+
+    .reward-badge {
+      background: rgba(47, 223, 117, 0.1);
+      color: var(--ion-color-success);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+  }
+
+  .yellow-btn {
+    --background: var(--ion-color-warning);
+    --color: black;
+    --border-radius: 10px;
+    font-weight: 700;
+    margin: 0;
+    height: 45px;
+  }
 }
 
-.reward-info h3 {
-  margin: 0;
-  color: #fff;
-  font-size: 16px;
-}
-
-.reward-info p {
-  margin: 4px 0;
-  color: #ccc;
-  font-size: 14px;
-}
-
-/* Etiquetas de rareza */
-.tag {
-  padding: 4px 10px;
-  border-radius: 8px;
-  font-size: 11px;
-  font-weight: bold;
-  color: #000;
-}
-
-.comun {
-  background: #bfbfbf;
-}
-
-.legendaria {
-  background: #f7c208;
-}
-
-.rara {
-  background: #b569ff;
-}
-
-/* Botón amarillo */
-.yellow-btn {
-  --background: #f7c208;
-  --color: #000;
-  font-weight: 600;
-  margin-top: 10px;
+.empty-state {
+  padding: 30px;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  border: 1px dashed #333;
+  border-radius: 16px;
 }
