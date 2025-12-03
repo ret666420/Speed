@@ -15,22 +15,23 @@ export class GaragePage implements OnInit {
   isLoading = true;
 
   carVisuals: Record<string, string> = {
-    'Street Tuner Rojo': 'assets/cars/car1_red.webp',
-    'Street Tuner Verde': 'assets/cars/car1_green.webp',
-    'Street Tuner Púrpura': 'assets/cars/car1_purple.webp',
-    'Street Tuner Amarillo': 'assets/cars/car1_yellow.webp',
-    'Terra SUV Rojo': 'assets/cars/car2_red.webp',
-    'Terra SUV Verde': 'assets/cars/car2_green.webp',
-    'Terra SUV Púrpura': 'assets/cars/car2_purple.webp',
-    'Terra SUV Amarillo': 'assets/cars/car2_yellow.webp',
-    'Phantom GT Rojo': 'assets/cars/car3_red.webp',
-    'Phantom GT Verde': 'assets/cars/car3_green.webp',
-    'Phantom GT Púrpura': 'assets/cars/car3_purple.webp',
-    'Phantom GT Amarillo': 'assets/cars/car3_yellow.webp',
-    'Solaris Supercar Rojo': 'assets/cars/car4_red.webp',
-    'Solaris Supercar Verde': 'assets/cars/car4_green.webp',
-    'Solaris Supercar Púrpura': 'assets/cars/car4_purple.webp',
-    'Solaris Supercar Amarillo': 'assets/cars/car4_yellow.webp',
+    'Street Tuner Rojo': 'assets/cars/ca1redPixel.png',
+    'Street Tuner Verde': 'assets/cars/car1greenPixel.png',
+    'Street Tuner Púrpura': 'assets/cars/car1purplePixel.png',
+    'Street Tuner Amarillo': 'assets/cars/car1yellowPixel.png',
+    'Terra SUV Rojo': 'assets/cars/car2redPixel.png',
+    'Terra SUV Verde': 'assets/cars/car2greenPixel.png',
+    'Terra SUV Púrpura': 'assets/cars/car2purplePixel.png',
+    'Terra SUV Amarillo': 'assets/cars/car2yellowPixel.png',
+    'Phantom GT Rojo': 'assets/cars/car3redPixel.png',
+    'Phantom GT Verde': 'assets/cars/car3greenPixel.png',
+    'Phantom GT Púrpura': 'assets/cars/car3purplePixel.png',
+    'Phantom GT Amarillo': 'assets/cars/car3yellowPixel.png',
+    'Solaris Supercar Rojo': 'assets/cars/car4redPixel.png',
+    'Solaris Supercar Verde': 'assets/cars/car4greenPixel.png',
+    'Solaris Supercar Púrpura': 'assets/cars/car4purplePixel.png',
+    'Solaris Supercar Amarillo': 'assets/cars/car4yellowPixel.png',
+
   };
 
   constructor(
@@ -47,7 +48,7 @@ export class GaragePage implements OnInit {
       next: (data) => {
         this.cars = data.map(car => ({
           ...car,
-          image: this.carVisuals[car.name] || 'assets/cars/car1_red.webp', // Fallback
+          image: this.carVisuals[car.name] || 'assets/cars/car1_red.png', // Fallback
           class: this.getCarClass(car.cost_to_unlock)
         }));
         this.isLoading = false;

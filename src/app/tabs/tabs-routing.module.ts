@@ -29,6 +29,11 @@ const routes: Routes = [
           import('../pages/premios/premios.module').then(m => m.PremiosPageModule)
       },
       {
+        path: 'acerca',
+        loadChildren: () =>
+          import('../pages/acerca/acerca.module').then(m => m.AcercaPageModule)
+      },
+      {
         path: '',
         redirectTo: 'inicio',
         pathMatch: 'full'

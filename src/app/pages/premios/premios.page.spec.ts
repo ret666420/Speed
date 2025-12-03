@@ -13,41 +13,40 @@ describe('PremiosPage', () => {
   let component: PremiosPage;
   let fixture: ComponentFixture<PremiosPage>;
 
-  // Definimos los tipos explícitamente como jasmine.SpyObj<Clase>
   let authServiceSpy: jasmine.SpyObj<AuthService>;
   let rewardsServiceSpy: jasmine.SpyObj<RewardsService>;
   let toastServiceSpy: jasmine.SpyObj<ToastService>;
   let navCtrlSpy: jasmine.SpyObj<NavController>;
 
+  // Datos Mock
   const mockRewards: RewardItem[] = [
     {
       achievement_id: '1',
-      name: 'Logro 1',
+      name: 'Logro Viejo',
       description: 'Desc',
       reward_monedas: 100,
       achieved: true,
       claimed_at: '2023-01-01',
-      unlocked_at: '2023-01-01'
+      unlocked_at: '2023-01-01T10:00:00Z' // Fecha antigua
     },
     {
       achievement_id: '2',
-      name: 'Logro Pendiente',
+      name: 'Logro Nuevo',
       description: 'Desc',
       reward_monedas: 500,
       achieved: true,
-      unlocked_at: new Date().toISOString() // Reciente
+      unlocked_at: '2025-01-01T10:00:00Z' // Fecha futura/reciente para probar sort
     }
   ];
 
   beforeEach(async () => {
-    // Creamos los espías
+    // Configurar espías
     authServiceSpy = jasmine.createSpyObj('AuthService', [], { currentUserId: 'user-123' });
     rewardsServiceSpy = jasmine.createSpyObj('RewardsService', ['getRewards', 'claimReward']);
-    toastServiceSpy = jasmine.createSpyObj('ToastService', ['success', 'error', 'warning']); // Agregué 'warning' por si acaso
+    toastServiceSpy = jasmine.createSpyObj('ToastService', ['success', 'error']);
     navCtrlSpy = jasmine.createSpyObj('NavController', ['navigateRoot']);
 
-    // Configuración por defecto: Devolver datos exitosos
-    // Al tipar rewardsServiceSpy correctamente arriba, TypeScript ya sabe que getRewards es un espía
+    // Default: éxito
     rewardsServiceSpy.getRewards.and.returnValue(of(mockRewards));
 
     await TestBed.configureTestingModule({
@@ -67,69 +66,121 @@ describe('PremiosPage', () => {
 
     fixture = TestBed.createComponent(PremiosPage);
     component = fixture.componentInstance;
-    fixture.detectChanges(); // Esto dispara ngOnInit
+    // NO detectamos cambios automáticamente para controlar ngOnInit
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
-  it('debería cargar recompensas al iniciar (ngOnInit)', () => {
+  // --- LOAD REWARDS ---
+
+  it('debería cargar recompensas, filtrar pendientes y ORDENAR actividad reciente', () => {
+    fixture.detectChanges(); // ngOnInit
+
     expect(rewardsServiceSpy.getRewards).toHaveBeenCalledWith('user-123');
-    expect(component.rewards.length).toBe(2);
-    expect(component.pendingRewards.length).toBe(1); // Solo el que no tiene claimed_at
-    expect(component.isLoading).toBeFalse();
+    expect(component.rewards).toEqual(mockRewards);
+
+    // Verificar Filtro Pendientes
+    // El Logro 2 no tiene claimed_at, debe estar pendiente
+    expect(component.pendingRewards.length).toBe(1);
+    expect(component.pendingRewards[0].achievement_id).toBe('2');
+
+    // Verificar ORDENAMIENTO (Recent Activity)
+    // Debe estar primero el Logro Nuevo (2) y luego el Viejo (1)
+    expect(component.recentActivity.length).toBe(2);
+    expect(component.recentActivity[0].achievement_id).toBe('2');
+    expect(component.recentActivity[1].achievement_id).toBe('1');
   });
 
-  it('debería redirigir al login si no hay usuario', () => {
-    // Forzamos que no haya usuario redefiniendo la propiedad
+  it('debería redirigir al login si no hay usuario en loadRewards', () => {
+    // Sobrescribir getter para devolver null
     Object.defineProperty(authServiceSpy, 'currentUserId', { get: () => null });
+
+    component.ngOnInit();
+
+    expect(navCtrlSpy.navigateRoot).toHaveBeenCalledWith('/login');
+    expect(rewardsServiceSpy.getRewards).not.toHaveBeenCalled();
+  });
+
+  it('debería manejar error al cargar recompensas', () => {
+    spyOn(console, 'error');
+    rewardsServiceSpy.getRewards.and.returnValue(throwError(() => new Error('API Error')));
 
     component.loadRewards();
 
-    expect(navCtrlSpy.navigateRoot).toHaveBeenCalledWith('/login');
+    expect(console.error).toHaveBeenCalled();
+    expect(component.isLoading).toBeFalse();
   });
 
-  it('debería reclamar una recompensa exitosamente', () => {
-    const rewardToClaim = mockRewards[1];
-    const mockClaimResponse = { success: true, message: 'Ok', new_balance: 1000 };
+  // --- CLAIM REWARD ---
 
-    // Simulamos respuesta exitosa del claim
-    rewardsServiceSpy.claimReward.and.returnValue(of(mockClaimResponse));
-
-    // Simulamos la recarga de datos posterior (array vacío para simplificar)
+  it('debería reclamar recompensa exitosamente y recargar', () => {
+    const reward = mockRewards[1];
+    // Respuesta success: true
+    rewardsServiceSpy.claimReward.and.returnValue(of({ success: true, message: 'Ok', new_balance: 100 }));
+    // Mock para la recarga posterior
     rewardsServiceSpy.getRewards.and.returnValue(of([]));
 
-    component.claim(rewardToClaim);
+    component.claim(reward);
 
-    expect(rewardsServiceSpy.claimReward).toHaveBeenCalledWith('user-123', rewardToClaim.achievement_id);
+    expect(rewardsServiceSpy.claimReward).toHaveBeenCalledWith('user-123', '2');
     expect(toastServiceSpy.success).toHaveBeenCalled();
-    // Se llama 1 vez en ngOnInit y 1 vez en claim -> total 2
-    expect(rewardsServiceSpy.getRewards).toHaveBeenCalledTimes(2);
+    // Debe llamar getRewards una vez más para actualizar
+    expect(rewardsServiceSpy.getRewards).toHaveBeenCalled();
   });
 
-  it('debería manejar error al reclamar recompensa', () => {
-    const rewardToClaim = mockRewards[1];
-    // Simulamos error
-    rewardsServiceSpy.claimReward.and.returnValue(throwError(() => new Error('Error API')));
+  it('debería NO hacer nada si claimReward devuelve success: false', () => {
+    const reward = mockRewards[1];
+    // Respuesta success: false
+    rewardsServiceSpy.claimReward.and.returnValue(of({ success: false, message: 'Fail', new_balance: 0 }));
 
-    component.claim(rewardToClaim);
+    component.claim(reward);
 
-    expect(toastServiceSpy.error).toHaveBeenCalled();
+    expect(rewardsServiceSpy.claimReward).toHaveBeenCalled();
+    expect(toastServiceSpy.success).not.toHaveBeenCalled(); // No debe mostrar éxito
+    // No debería recargar datos (según la lógica actual de tu componente, solo recarga si success es true)
   });
 
-  it('debería calcular "Hace X tiempo" correctamente (getTimeAgo)', () => {
+  it('debería manejar error del servidor en claimReward', () => {
+    spyOn(console, 'error');
+    const reward = mockRewards[1];
+    rewardsServiceSpy.claimReward.and.returnValue(throwError(() => new Error('Fail')));
+
+    component.claim(reward);
+
+    expect(console.error).toHaveBeenCalled();
+    expect(toastServiceSpy.error).toHaveBeenCalledWith('Error al reclamar recompensa');
+  });
+
+  it('debería salir temprano de claim si no hay usuario (branch coverage)', () => {
+    Object.defineProperty(authServiceSpy, 'currentUserId', { get: () => null });
+    const reward = mockRewards[1];
+
+    component.claim(reward);
+
+    expect(rewardsServiceSpy.claimReward).not.toHaveBeenCalled();
+  });
+
+  // --- GET TIME AGO ---
+
+  it('debería formatear fechas correctamente (Segundos, Minutos, Horas, Días)', () => {
     const now = new Date();
 
-    // Caso: Segundos
+    // Segundos
     expect(component.getTimeAgo(now.toISOString())).toContain('segundos');
 
-    // Caso: Minutos (Hace 5 min)
+    // Minutos
     const fiveMinAgo = new Date(now.getTime() - 5 * 60 * 1000);
     expect(component.getTimeAgo(fiveMinAgo.toISOString())).toBe('Hace 5m');
 
-    // Caso: Horas (Hace 2 horas)
+    // Horas
     const twoHoursAgo = new Date(now.getTime() - 2 * 60 * 60 * 1000);
     expect(component.getTimeAgo(twoHoursAgo.toISOString())).toBe('Hace 2h');
+
+    // Días (Cubrimos la rama 'else' o final de la función)
+    const threeDaysAgo = new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000);
+    expect(component.getTimeAgo(threeDaysAgo.toISOString())).toBe('Hace 3d');
   });
 });

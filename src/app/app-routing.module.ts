@@ -7,7 +7,7 @@ const routes: Routes = [
     redirectTo: 'bienvenida',
     pathMatch: 'full'
   },
-  
+
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
@@ -25,8 +25,9 @@ const routes: Routes = [
     loadChildren: () => import('./bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule)
   },
 
- 
- 
+
+
+
 ];
 
 @NgModule({

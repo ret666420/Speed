@@ -4,6 +4,7 @@ export interface LoginResponse {
         user_id: string;
         username: string;
         email: string;
+
         profile: {
             display_name: string;
             monedas: number;

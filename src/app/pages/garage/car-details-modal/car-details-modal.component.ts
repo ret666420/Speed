@@ -13,16 +13,11 @@ export class CarDetailsModalComponent {
   @Input() car!: CarWikiItem;
 
 
-  isLoading = false; 
+  isLoading = false;
 
   constructor(private modalCtrl: ModalController) { }
 
   dismiss() {
     this.modalCtrl.dismiss();
-  }
-  
-
-  openDetails(car: any) {
-    console.warn('openDetails llamado dentro del modal, verificar HTML');
   }
 }
